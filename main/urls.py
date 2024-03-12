@@ -1,8 +1,10 @@
 from django.urls import path
-from main.views.films import AddFilmGenericAPIView, SearchFilmListAPIView, FilmListGenericAPIView, \
-    FilmsByCategoryGenericAPIView, FilmDetailGenericAPIView, UpdateFilmMessageIdGenericAPIView
+from main.views.films import (
+    AddFilmGenericAPIView, SearchFilmListAPIView, FilmListGenericAPIView,
+    FilmsByCategoryGenericAPIView, FilmDetailGenericAPIView, UpdateFilmMessageIdGenericAPIView)
 from main.views.telegram_users import AddTelegramUserGenericAPIView
-from main.views.categories import CategoryListGenericAPIView
+from main.views.categories import CategoryListGenericAPIView, SubCategoryListByParentIDGenericAPIView, \
+    SubCategoryListGenericAPIView
 
 urlpatterns = [
     # user
@@ -10,6 +12,8 @@ urlpatterns = [
 
     # category
     path('category-list', CategoryListGenericAPIView.as_view(), name='category_list'),
+    path('sub-categories/<int:parent_id>', SubCategoryListByParentIDGenericAPIView.as_view(), name='sub_categories'),
+    path('sub-categories-list', SubCategoryListGenericAPIView.as_view(), name='sub_categories_list'),
 
     # film
     path('add-film', AddFilmGenericAPIView.as_view(), name='add_film'),
