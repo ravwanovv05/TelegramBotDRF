@@ -1,4 +1,4 @@
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, ListAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from main.models.telegram_users import TelegramUser
@@ -16,3 +16,15 @@ class AddTelegramUserGenericAPIView(GenericAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class TelegramUserListGenericAPIView(GenericAPIView):
+    serializer_class = TelegramUserSerializer
+
+    def get_queryset(self, *args, **kwargs):
+        return TelegramUser.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        queryset = TelegramUser.objects.all()
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)

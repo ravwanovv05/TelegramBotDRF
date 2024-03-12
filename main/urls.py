@@ -2,13 +2,15 @@ from django.urls import path
 from main.views.films import (
     AddFilmGenericAPIView, SearchFilmListAPIView, FilmListGenericAPIView,
     FilmsByCategoryGenericAPIView, FilmDetailGenericAPIView, UpdateFilmMessageIdGenericAPIView)
-from main.views.telegram_users import AddTelegramUserGenericAPIView
-from main.views.categories import CategoryListGenericAPIView, SubCategoryListByParentIDGenericAPIView, \
-    SubCategoryListGenericAPIView
+from main.views.telegram_users import AddTelegramUserGenericAPIView, TelegramUserListGenericAPIView
+from main.views.categories import (
+    CategoryListGenericAPIView, SubCategoryListByParentIDGenericAPIView,
+    SubCategoryListGenericAPIView)
 
 urlpatterns = [
     # user
     path('add-user', AddTelegramUserGenericAPIView.as_view(), name='add_user'),
+    path('telegram-user-list', TelegramUserListGenericAPIView.as_view(), name='telegram_user_list'),
 
     # category
     path('category-list', CategoryListGenericAPIView.as_view(), name='category_list'),
