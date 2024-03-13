@@ -7,7 +7,7 @@ from main.models.categories import Category
 
 
 class Film(models.Model):
-    name = models.CharField(max_length=255, unique=True, verbose_name='Name')
+    name = models.CharField(max_length=255, verbose_name='Name')
     language = models.CharField(max_length=255, null=True, blank=True, verbose_name='Language')
     size = models.CharField(max_length=255, null=True, blank=True, verbose_name='Size')
     release_date = models.CharField(max_length=10, null=True, blank=True, verbose_name='Release Date')

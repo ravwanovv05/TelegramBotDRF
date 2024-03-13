@@ -39,3 +39,17 @@ class SubCategoryListGenericAPIView(GenericAPIView):
         sub_categories = self.get_queryset()
         serializer = self.get_serializer(sub_categories, many=True)
         return Response(serializer.data)
+
+
+class ParentCategoryGenericAPIView(GenericAPIView):
+    serializer_class = CategorySerializer
+
+    def get_queryset(self, *args, **kwargs):
+        return Category.objects.all()
+
+    def get(self, request, category_id, *args, **kwargs):
+        sub_category = Category.objects.get(pk=category_id)
+        serializer = self.get_serializer(sub_category)
+        data = serializer.data
+        parent_category = Category.objects.get(pk=data['parent'])
+        return Response({'id': parent_category.id, 'name': parent_category.name})

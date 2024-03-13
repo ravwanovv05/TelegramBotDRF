@@ -1,6 +1,7 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
 
+from main.models import Feedback
 from main.models.categories import Category
 from main.models.films import Film
 from main.models.telegram_users import TelegramUser
@@ -32,3 +33,8 @@ class FilmAdmin(ImportExportModelAdmin):
     search_fields = ('name',)
     list_per_page = 10
     resource_class = FilmResource
+
+
+@admin.register(Feedback)
+class FeedbackAdmin(admin.ModelAdmin):
+    list_display = ('name', 'message', 'telegram_id', 'created_at')

@@ -211,6 +211,7 @@ JAZZMIN_SETTINGS = {
         "auth.Group": "fas fa-users",
         "main.TelegramUser": "fas fa-user-circle",
         "main.Film": "fas fa-film",
+        "main.Feedback": "fas fa-comment-alt"
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",
